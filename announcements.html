@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center mb-4">Announcements</h1>
+
+<!-- Announcement Form for Teachers -->
+{% if role == 'Teacher' %}
+<div class="card my-4">
+    <div class="card-body">
+        <h5 class="card-title">Post a New Announcement</h5>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter a brief and descriptive title" maxlength="100" required>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="4" placeholder="Write your announcement here" maxlength="500" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Post Announcement</button>
+        </form>
+    </div>
+</div>
+{% endif %}
+
+<!-- Display Announcements -->
+<div class="mt-4">
+    {% if announcements %}
+        <div class="list-group">
+            {% for announcement in announcements %}
+                <div class="list-group-item shadow-sm mb-3">
+                    <h5 class="mb-2">{{ announcement.title }}</h5>
+                    <p class="mb-1">{{ announcement.content }}</p>
+                    <small class="text-muted">
+                        Posted on: {{ announcement.date_posted.strftime('%B %d, %Y at %H:%M') }}
+                        {% if announcement.author %} | By: {{ announcement.author }}{% endif %}
+                    </small>
+
+                    <!-- Edit/Delete Options for Teachers -->
+                    {% if role == 'Teacher' %}
+                        <div class="mt-2">
+                            <a href="/announcements/edit/{{ announcement.id }}" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="/announcements/delete/{{ announcement.id }}" class="btn btn-sm btn-danger">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted text-center">No announcements available yet.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

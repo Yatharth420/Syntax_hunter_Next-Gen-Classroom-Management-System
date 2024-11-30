@@ -1,0 +1,204 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <form action="/emergency" method="POST">
+        <button type="submit" class="btn btn-danger">Emergency Alert</button>
+    </form>
+    <div class="container">
+        <h1>Welcome, {{ session['username'] }} (Teacher)</h1>
+        <nav>
+            <ul>
+                <li><a href="/announcements">Announcements</a></li>
+                <li><a href="/recordings">Recordings</a></li>
+                <li><a href="/mentors">Manage Mentors</a></li>
+                <li><a href="/profile">View Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        <div>
+            <h2>Dashboard Features</h2>
+            <button><a href="/attendance">View Attendance</a></button>
+            <button><a href="/live-classes">Live Classes</a></button>
+        </div>
+        <div>
+            <h3>Upcoming Events</h3>
+            <div id="calendar">
+                Placeholder for calendar feature -->
+                <!-- <p>No upcoming events currently.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #00796B;
+        }
+
+        .container {
+            margin: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: #00796B;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #388E3C;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1rem;
+        }
+
+        .dashboard-btns button {
+            background-color: #FF5252;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .dashboard-btns button:hover {
+            background-color: #E53935;
+        }
+
+        #calendar {
+            padding: 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .emergency-btn {
+            background-color: #FF5252;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .emergency-btn:hover {
+            background-color: #E53935;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ session['username'] }} (Teacher)</h1>
+
+        <nav>
+            <ul>
+                <li><a href="/announcements">Announcements</a></li>
+                <li><a href="/recordings">Recordings</a></li>
+                <li><a href="/mentors">Manage Mentors</a></li>
+                <li><a href="/profile">View Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Emergency Button -->
+        <div>
+            <form action="/emergency" method="POST">
+                <button type="submit" class="emergency-btn">Emergency Alert</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Dashboard Features</h2>
+            <div class="dashboard-btns">
+                <button><a href="/attendance" class="btn">View Attendance</a></button>
+                <button><a href="/live-classes" class="btn">Live Classes</a></button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Upcoming Events</h3>
+            <div id="calendar">
+                <!-- Placeholder for calendar feature -->
+                <p>No upcoming events currently.</p>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <h2>Attendance Management</h2>
+            <p><a href="{{ url_for('attendance') }}" class="btn">View Attendance</a></p>
+        </div>
+    </div>
+</body>
+</html>

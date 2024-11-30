@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center mb-4">Recorded Classes</h1>
+
+<!-- Upload Form for Teachers -->
+{% if role == 'Teacher' %}
+<div class="card my-4">
+    <div class="card-body">
+        <h5 class="card-title">Upload a New Recording</h5>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Class Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter the class title" maxlength="100" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" placeholder="Provide a brief description of the recording (optional)" maxlength="250"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="file" class="form-label">Select File</label>
+                <input type="file" class="form-control" id="file" name="file" accept="video/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+</div>
+{% endif %}
+
+<!-- List of Recorded Classes -->
+<div class="mt-4">
+    {% if recordings %}
+        <div class="row">
+            {% for recording in recordings %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ recording.title }}</h5>
+                            {% if recording.description %}
+                                <p class="card-text text-muted">{{ recording.description }}</p>
+                            {% endif %}
+                            <a href="{{ recording.url }}" class="btn btn-success btn-sm" target="_blank">View Recording</a>
+                            <small class="text-muted d-block mt-2">Uploaded on: {{ recording.date_uploaded.strftime('%B %d, %Y') }}</small>
+
+                            <!-- Edit/Delete Options for Teachers -->
+                            {% if role == 'Teacher' %}
+                                <div class="mt-2">
+                                    <a href="/recordings/edit/{{ recording.id }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="/recordings/delete/{{ recording.id }}" class="btn btn-sm btn-danger">Delete</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted text-center">No recordings available yet.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

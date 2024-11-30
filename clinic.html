@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #00796B;
+            text-align: center;
+        }
+
+        .sos-list {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .sos-item {
+            background: #FFEBEE;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 5px solid #D32F2F;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sos-item h3 {
+            margin: 0;
+            color: #D32F2F;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clinic - SOS Requests</h1>
+
+    <div class="sos-list">
+        {% if sos_requests %}
+            {% for request in sos_requests %}
+            <div class="sos-item">
+                <h3>SOS Alert!</h3>
+                <p><strong>Classroom:</strong> {{ request.classroom }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No SOS requests at the moment.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

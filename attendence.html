@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Attendance System</h2>
+
+    <!-- Start Face Recognition -->
+    <div class="my-4">
+        <h4>Start Attendance Recognition</h4>
+        <form method="GET" action="/start">
+            <button type="submit" class="btn btn-primary">Start Recognition</button>
+        </form>
+    </div>
+
+    <!-- Add a New User -->
+    <div class="my-4">
+        <h4>Add a New User</h4>
+        <form method="POST" action="/add">
+            <div class="form-group">
+                <label for="newusername">Name:</label>
+                <input type="text" class="form-control" id="newusername" name="newusername" placeholder="Enter user name" required>
+            </div>
+            <div class="form-group">
+                <label for="newuserid">Roll Number:</label>
+                <input type="text" class="form-control" id="newuserid" name="newuserid" placeholder="Enter roll number" required>
+            </div>
+            <button type="submit" class="btn btn-success">Add User</button>
+        </form>
+    </div>
+
+    <!-- Display Registered Users and Attendance -->
+    <div class="my-4">
+        <h4>Today's Attendance</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Roll Number</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for name, roll, time in zip(names, rolls, times) %}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ roll }}</td>
+                    <td>{{ time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

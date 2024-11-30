@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Class Schedules</h1>
+    <nav>
+        <a href="/">Home</a> | <a href="/dashboard">Dashboard</a> | <a href="/logout">Logout</a>
+    </nav>
+    
+    <ul>
+        {% for schedule in schedules %}
+        <li>
+            <strong>Subject:</strong> {{ schedule.subject }} <br>
+            <strong>Time:</strong> {{ schedule.time }} <br>
+            <strong>Classroom:</strong> {{ schedule.classroom }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if role == 'Teacher' %}
+    <h2>Add a New Schedule</h2>
+    <form action="/schedules" method="POST">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required><br><br>
+
+        <label for="time">Time:</label>
+        <input type="text" id="time" name="time" required><br><br>
+
+        <label for="classroom">Classroom:</label>
+        <input type="text" id="classroom" name="classroom" required><br><br>
+
+        <button type="submit">Add Schedule</button>
+    </form>
+    {% endif %}
+</body>
+</html>

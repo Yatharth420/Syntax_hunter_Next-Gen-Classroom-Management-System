@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center">Welcome to Smart Classroom</h1>
+<p class="text-center lead">Your one-stop solution for a smarter learning experience.</p>
+
+<div class="row mt-4">
+    <div class="col-md-3">
+        <a href="/announcements" class="card text-center shadow-sm">
+            <div class="card-body">
+                <i class="bi bi-megaphone-fill display-4 text-primary"></i>
+                <h5 class="card-title mt-2">Announcements</h5>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="/recordings" class="card text-center shadow-sm">
+            <div class="card-body">
+                <i class="bi bi-play-circle-fill display-4 text-success"></i>
+                <h5 class="card-title mt-2">Recordings</h5>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="/mentors" class="card text-center shadow-sm">
+            <div class="card-body">
+                <i class="bi bi-people-fill display-4 text-info"></i>
+                <h5 class="card-title mt-2">Mentor Connect</h5>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="/resources" class="card text-center shadow-sm">
+            <div class="card-body">
+                <i class="bi bi-folder-fill display-4 text-warning"></i>
+                <h5 class="card-title mt-2">Resources</h5>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}
